@@ -9,4 +9,4 @@
 ### Tomcat 연동
 1. Settings - Plugins - 'Smart Tomcat' 설치 - 환경설정에서 설치한 Tomcat 서버 경로 지정 - Configurations 설정
 
-<img src="https://user-images.githubusercontent.com/54324782/155695070-955e4c70-75fc-4468-8519-a57e8fffa58e.png" width="600" height="400">
+<img src="https://user-images.githubusercontent.com/54324782/155695798-01f47605-56ed-4558-bb4a-665538487651.png" width="700" height="300">
