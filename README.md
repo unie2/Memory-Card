@@ -49,3 +49,35 @@
     - Model : 애플리케이션의 정보, 즉 데이터를 나타낸다.
     - View : 사용자에게 보여주는 인터페이스, 즉 화면을 의미한다. (= JSP)
     - Controller : 비지니스 로직과 모델의 상호동작의 조정 역할을 한다.
+
+### Spring 라이브러리 추가
+1. pom.xml에 필요한 라이브러리 추가
+  - Spring, AspectJ, MyBatis, JDBC, MariaDB, Servlet, Logging, JSON View 등등 ..
+  - <org.springframework-version> : Spring 버전 지정
+  - <repositories> : 실제 라이브러리를 다운받을 저장소  
+  - <dependencies> : 실제 라이브러리를 지정
+  
+### UTF-8 Encoding 지정 (web.xml)  
+```jsp
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+```
+  
+### Spring 설정파일 추가
+1. 특정 폴더에 있는 context-로 시작하는 모든 xml파일을 읽어온다.
+```jsp
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath*:config/spring/context-*.xml</param-value>
+  </context-param>
+```
