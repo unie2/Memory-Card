@@ -81,3 +81,47 @@
     <param-value>classpath*:config/spring/context-*.xml</param-value>
   </context-param>
 ```
+
+-----------------------
+
+## _DAY03_
+### Log4j 설정
+- Log4j는 JAVA 기반의 로깅 유틸리티로, Apache에서 만든 오픈소스 라이브러리다.
+- Log4j는 시스템의 성능에 큰 영향을 미치지 않으면서도, 옵션 설정을 통해서 다양한 로깅 방법을 제공한다.
+- Log4j 구조
+  > Logger : 출력할 메시지를 Appender에 전달한다.  
+  > Appender : 전달된 로그를 어디에 출력할지 결정한다. (콘솔 출력, 파일 기록, DB 저장 등)  
+  > Layout : 로그를 어떤 형식으로 출력할지 결정한다.  
+
+1. Log4j 라이브러리 추가 및 log4j.xml 작성
+
+### 인터셉터 (Interceptor) 설정
+- 인터셉터는 Spring에서 중간에 요청을 가로채서 어떠한 일을 하는 것을 의미한다.
+- 인터셉터는 DispatcherServlet이 컨트롤러를 호출하기 전, 후에 요청과 응답을 가로채서 가공할 수 있도록 해준다.
+  > DispatcherServlet : 사용자(클라이언트)의 요청을 받아 해당 요청에 매핑되는 컨트롤러와 연결한 후, 컨트롤러에서 정의된 view를 사용자의 브라우저에 출력하는 역할을 수행  
+  
+1. LoggerInterceptor.java 파일 생성
+  - HandlerInterceptorAdaptor 클래스를 상속받아 전처리기와 후처리기를 생성한다.
+    > 전처리기 : 클라이언트 -> 컨트롤러 요청 시  
+    > 후처리기 : 컨트롤러 -> 클라이언트 응답 시  
+  - action-servlet에 인터셉터 설정
+  
+2. 테스트
+```java
+@Controller
+public class CommonController {
+    Logger log = Logger.getLogger(this.getClass());
+
+    @RequestMapping(value = "/main_page.do")
+    public ModelAndView main_page(Map<String, Object> commandMap) throws Exception {
+        ModelAndView mv = new ModelAndView("index");
+        log.debug("인터셉터 테스트");
+
+        return mv;
+    }
+}
+  
+```
+  - @Requestmapping : 프로젝트가 실행될 주소를 의미
+  - ModelAndView : 보여줄 view 설정
+![Interceptor](https://user-images.githubusercontent.com/54324782/157184908-8ebe89ea-3057-49cc-9698-27dfc5eb5937.png)
