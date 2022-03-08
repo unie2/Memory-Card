@@ -1,5 +1,2 @@
-<html>
-<body>
-<h2>This is index.jsp</h2>
-</body>
-</html>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<jsp:forward page="/memorycard/main_page.do"/>

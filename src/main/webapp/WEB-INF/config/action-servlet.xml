@@ -13,11 +13,11 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 
-    <mvc:annotation-driven>
-        <mvc:argument-reolvers>
+    <!--<mvc:annotation-driven>
+        <mvc:argument-resolvers>
             <bean class="memorycard.common.resolver.CustomMapArgumentResolver"></bean>
-        </mvc:argument-reolvers>
-    </mvc:annotation-driven>
+        </mvc:argument-resolvers>
+    </mvc:annotation-driven>-->
 
     <mvc:interceptors>
         <!-- 로깅 -->
@@ -29,10 +29,15 @@
     </mvc:interceptors>
 
 
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0"/>
+    <bean id="jsonMapper" class="com.fasterxml.jackson.databind.ObjectMapper" />
+    <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+        <property name="objectMapper" ref="jsonMapper" />
+    </bean>
+
     <bean
         class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"
         p:viewClass="org.springframework.web.servlet.view.JstlView"
         p:prefix="/WEB-INF/jsp/" p:suffix=".jsp">
-
     </bean>
 </beans>
