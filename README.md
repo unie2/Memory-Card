@@ -125,3 +125,24 @@ public class CommonController {
   - @Requestmapping : 프로젝트가 실행될 주소를 의미
   - ModelAndView : 보여줄 view 설정
 ![Interceptor](https://user-images.githubusercontent.com/54324782/157184908-8ebe89ea-3057-49cc-9698-27dfc5eb5937.png)
+
+-----------------------
+
+## _DAY04_
+### Mybatis 연동
+  - 기존의 JDBC를 이용하여 프로그래밍을 하는 방식에 비해 Mybatis는 개발자의 부담을 굉장히 많이 덜아주고, 생산성 향상에도 도움이 된다.
+  - 기존의 JDBC를 통해 SQL의 변경 등이 발생할 경우, 프로그램(java 파일)을 수정하기 때문에 그 유연성이 좋지 못한 반면에 MyBatis에서는 SQL을 xml 파일에 작성하기 때문에 SQL의 변환이 자유롭고, 가독성이 좋다.
+  
+1. Mybatis 연결 설정 (데이터베이스 접속)
+2. Mybatis와 Spring 연결
+```xml
+   <bean id="sqlSession" class="org.mybatis.spring.sqlSessionFactoryBean">
+       <property name="dataSource" ref="dataSource" />
+       <property name="mapperLocations" value="classpath:/mapper/**/*_SQL.xml" />
+   </bean>
+
+   <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+       <constructor-arg index="0" ref="sqlSession" />
+   </bean>
+```
+  
